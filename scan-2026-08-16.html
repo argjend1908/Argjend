@@ -1,0 +1,797 @@
+<title>Money OS Command Center</title>
+<style>
+  :root {
+    --ground: #EFF3F1;
+    --surface: #FFFFFF;
+    --surface-2: #F6F9F7;
+    --line: #D3DEDA;
+    --line-soft: #E4EBE8;
+    --ink: #0E1A18;
+    --ink-2: #3C4E4A;
+    --ink-3: #6B7D79;
+    --accent: #1A6B58;
+    --accent-soft: #DCEBE5;
+    --strong: #2F7D5F;
+    --strong-bg: #DFEDE5;
+    --some: #96701A;
+    --some-bg: #F2EAD5;
+    --weak: #A2493C;
+    --weak-bg: #F3E1DD;
+    --meter-track: #E1E9E6;
+    --shadow: 0 1px 2px rgba(14, 26, 24, .05), 0 8px 24px -12px rgba(14, 26, 24, .18);
+
+    --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0C1513;
+      --surface: #131F1C;
+      --surface-2: #182724;
+      --line: #2A3A36;
+      --line-soft: #21302C;
+      --ink: #E6EFEB;
+      --ink-2: #AFC0BB;
+      --ink-3: #7D908B;
+      --accent: #4FBF9B;
+      --accent-soft: #1B322B;
+      --strong: #6FCFA4;
+      --strong-bg: #163024;
+      --some: #D6AE55;
+      --some-bg: #322813;
+      --weak: #D98577;
+      --weak-bg: #331C18;
+      --meter-track: #24332F;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -12px rgba(0, 0, 0, .7);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0C1513;
+    --surface: #131F1C;
+    --surface-2: #182724;
+    --line: #2A3A36;
+    --line-soft: #21302C;
+    --ink: #E6EFEB;
+    --ink-2: #AFC0BB;
+    --ink-3: #7D908B;
+    --accent: #4FBF9B;
+    --accent-soft: #1B322B;
+    --strong: #6FCFA4;
+    --strong-bg: #163024;
+    --some: #D6AE55;
+    --some-bg: #322813;
+    --weak: #D98577;
+    --weak-bg: #331C18;
+    --meter-track: #24332F;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -12px rgba(0, 0, 0, .7);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { display: flex; flex-direction: column; gap: .75rem; }
+
+  .masthead h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(2.1rem, 5.5vw, 3.1rem);
+    line-height: 1.08;
+    letter-spacing: -.015em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .masthead .standfirst {
+    font-size: 1.075rem;
+    color: var(--ink-2);
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .runline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1.25rem;
+    padding-top: .75rem;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: .74rem;
+    color: var(--ink-3);
+    letter-spacing: .04em;
+  }
+
+  /* ---------- verdict ---------- */
+
+  .verdict {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 3px;
+    padding: 1.6rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: .85rem;
+    box-shadow: var(--shadow);
+  }
+
+  .verdict h2 {
+    font-family: var(--display);
+    font-size: 1.45rem;
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .verdict p { margin: 0; color: var(--ink-2); max-width: 68ch; }
+  .verdict strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- section headers ---------- */
+
+  .section { display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-bottom: .6rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section-head h2 {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -.01em;
+  }
+
+  .section-note {
+    font-size: .84rem;
+    color: var(--ink-3);
+    margin: 0;
+    max-width: 42ch;
+  }
+
+  /* ---------- opportunity cards ---------- */
+
+  .cards { display: flex; flex-direction: column; gap: 1.1rem; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+  }
+
+  .rank {
+    border-right: 1px solid var(--line-soft);
+    background: var(--surface-2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: .15rem;
+    padding: 1.5rem .5rem;
+  }
+
+  .rank .num {
+    font-family: var(--mono);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .rank .num-label {
+    font-family: var(--mono);
+    font-size: .58rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .card-body {
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .card-title { display: flex; flex-direction: column; gap: .3rem; min-width: 14rem; flex: 1 1 20rem; }
+
+  .card-title h3 {
+    font-family: var(--display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.22;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .overall {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .1rem;
+    flex: 0 0 auto;
+  }
+
+  .overall .val {
+    font-family: var(--mono);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -.03em;
+  }
+
+  .thesis { margin: 0; color: var(--ink-2); max-width: 68ch; }
+
+  /* pills */
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .28rem .6rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .pill::before {
+    content: "";
+    width: .42rem;
+    height: .42rem;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .pill-strong { color: var(--strong); background: var(--strong-bg); }
+  .pill-some   { color: var(--some);   background: var(--some-bg); }
+  .pill-weak   { color: var(--weak);   background: var(--weak-bg); }
+
+  .pill-row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: .28rem .6rem;
+    white-space: nowrap;
+  }
+
+  /* meters */
+
+  .meters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+    gap: .7rem 1.5rem;
+    padding-top: .25rem;
+  }
+
+  .meter { display: flex; flex-direction: column; gap: .3rem; }
+
+  .meter-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: .5rem;
+    font-family: var(--mono);
+    font-size: .66rem;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .meter-label b {
+    color: var(--ink-2);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .track { height: 4px; background: var(--meter-track); border-radius: 2px; overflow: hidden; }
+  .fill { height: 100%; background: var(--accent); border-radius: 2px; }
+  .fill.is-low { background: var(--weak); }
+
+  /* next step */
+
+  .next {
+    border-top: 1px solid var(--line-soft);
+    padding-top: .9rem;
+    display: flex;
+    gap: .75rem;
+    align-items: baseline;
+  }
+
+  .next .k {
+    font-family: var(--mono);
+    font-size: .66rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    flex: 0 0 auto;
+    padding-top: .15rem;
+  }
+
+  .next p { margin: 0; color: var(--ink); max-width: 62ch; }
+
+  /* ---------- rejected ---------- */
+
+  .rejects { display: flex; flex-direction: column; gap: 0; }
+
+  .reject {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .3rem;
+    padding: 1.05rem 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .reject:first-child { border-top: 1px solid var(--line-soft); }
+
+  .reject h4 {
+    font-family: var(--body);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .reject p { margin: 0; color: var(--ink-2); font-size: .93rem; max-width: 74ch; }
+  .reject .why { color: var(--weak); font-weight: 600; }
+
+  /* ---------- limits ---------- */
+
+  .limits {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1.6rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .limits h2 {
+    font-family: var(--display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .limits ul { margin: 0; padding-left: 1.15rem; display: flex; flex-direction: column; gap: .6rem; }
+  .limits li { color: var(--ink-2); max-width: 74ch; }
+  .limits li strong { color: var(--ink); font-weight: 600; }
+
+  .qs { display: flex; flex-direction: column; gap: .5rem; }
+
+  .q {
+    display: flex;
+    gap: .75rem;
+    align-items: baseline;
+    padding: .55rem 0;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .q:last-child { border-bottom: none; }
+
+  .q .qn {
+    font-family: var(--mono);
+    font-size: .7rem;
+    color: var(--accent);
+    flex: 0 0 1.25rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .q p { margin: 0; color: var(--ink-2); font-size: .93rem; }
+  .q p em { color: var(--ink-3); font-style: normal; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 1.25rem;
+    color: var(--ink-3);
+    font-size: .85rem;
+  }
+
+  footer p { margin: 0 0 .5rem; max-width: 74ch; }
+
+  a { color: var(--accent); text-underline-offset: 2px; }
+  a:focus-visible, .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media (max-width: 34rem) {
+    .card { grid-template-columns: 1fr; }
+    .rank {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: baseline;
+      gap: .5rem;
+      border-right: none;
+      border-bottom: 1px solid var(--line-soft);
+      padding: .8rem 1.25rem;
+    }
+    .card-body { padding: 1.25rem; }
+    .wrap { padding: 2rem 1rem 3.5rem; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Money OS · Morning Scan</p>
+    <h1>The best-evidenced move this month isn't a business.</h1>
+    <p class="standfirst">
+      Five opportunities scouted, researched and stress-tested against real sources.
+      The one with the strongest demand evidence is a job in medical devices — and the
+      scoring rules say evidence wins, so that's where it ranked.
+    </p>
+    <div class="runline">
+      <span>16 August 2026</span>
+      <span>First run</span>
+      <span>5 ranked · 5 rejected</span>
+      <span>Market: DACH / Switzerland</span>
+    </div>
+  </header>
+
+  <section class="verdict">
+    <p class="eyebrow">If you do one thing this week</p>
+    <h2>Have the same ten conversations once, and let them settle three of these five.</h2>
+    <p>
+      Opportunities <strong>#2</strong> and <strong>#5</strong> both hinge on one unknown:
+      will people in your own profession pay you for something. Ten honest conversations with
+      colleagues who have thought about leaving answers that for both at once — and the same
+      conversations tell you where they buy their work gear. Meanwhile <strong>#1</strong> costs
+      nothing to start: the device vendors already in your OR are a warm target list nobody else has.
+    </p>
+    <p>
+      Everything below separates <strong>what a source actually said</strong> from
+      <strong>what I inferred</strong>. Where demand couldn't be proven, it says so.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Ranked opportunities</h2>
+      <p class="section-note">Scored 1–10 on five factors. Higher is always better — easier to build, more open, cheaper to start.</p>
+    </div>
+
+    <div class="cards">
+
+      <!-- 1 -->
+      <article class="card">
+        <div class="rank"><span class="num">1</span><span class="num-label">Rank</span></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-title">
+              <p class="eyebrow">Career move · not a business</p>
+              <h3>Medtech clinical role — Medizinprodukteberater / Clinical Application Specialist</h3>
+            </div>
+            <div class="overall"><span class="val">8.0</span><span class="eyebrow">Overall</span></div>
+          </div>
+
+          <div class="pill-row">
+            <span class="pill pill-strong">Demand: Strong</span>
+            <span class="tag">Zero cash</span>
+            <span class="tag">Fastest feedback</span>
+          </div>
+
+          <p class="thesis">
+            Device vendors sell into operating rooms and need people who have stood at the table.
+            This is the only candidate where demand is <em>posted publicly</em> rather than inferred:
+            named companies, open roles, published salary bands, explicit lateral-entry pathways.
+            The catch is honest — it pays a salary, it doesn't build an asset you own.
+          </p>
+
+          <div class="meters">
+            <div class="meter"><span class="meter-label">Opportunity <b>7</b></span><span class="track"><span class="fill" style="width:70%"></span></span></div>
+            <div class="meter"><span class="meter-label">Difficulty <b>8</b></span><span class="track"><span class="fill" style="width:80%"></span></span></div>
+            <div class="meter"><span class="meter-label">Competition <b>6</b></span><span class="track"><span class="fill" style="width:60%"></span></span></div>
+            <div class="meter"><span class="meter-label">Startup cost <b>10</b></span><span class="track"><span class="fill" style="width:100%"></span></span></div>
+            <div class="meter"><span class="meter-label">Monetization <b>9</b></span><span class="track"><span class="fill" style="width:90%"></span></span></div>
+          </div>
+
+          <div class="next">
+            <span class="k">Next</span>
+            <p>Write down every device brand actually used in your OR. That list is your warm target list — apply to those vendors first, and register with the medtech contracting agencies for the freelance route.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="card">
+        <div class="rank"><span class="num">2</span><span class="num-label">Rank</span></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-title">
+              <p class="eyebrow">Highest-ranked business you'd own</p>
+              <h3>The “Pflexit” transition program for healthcare workers</h3>
+            </div>
+            <div class="overall"><span class="val">6.8</span><span class="eyebrow">Overall</span></div>
+          </div>
+
+          <div class="pill-row">
+            <span class="pill pill-some">Demand: Some</span>
+            <span class="tag">Refocuses your coaching concept</span>
+            <span class="tag">Audience-gated</span>
+          </div>
+
+          <p class="thesis">
+            Roughly 300 nurses a month leave the profession in Switzerland — the phenomenon has its
+            own name, <em>Pflexit</em>. The survey evidence points somewhere useful: the top exit
+            driver is missing career progression, not pay. So the product is “here are the real exit
+            routes and what they pay,” written by someone still in the OR — not resilience coaching.
+            Your existing concept aimed at burned-out professionals generally; this points it at the
+            group you have standing with.
+          </p>
+
+          <div class="meters">
+            <div class="meter"><span class="meter-label">Opportunity <b>8</b></span><span class="track"><span class="fill" style="width:80%"></span></span></div>
+            <div class="meter"><span class="meter-label">Difficulty <b>6</b></span><span class="track"><span class="fill" style="width:60%"></span></span></div>
+            <div class="meter"><span class="meter-label">Competition <b>5</b></span><span class="track"><span class="fill" style="width:50%"></span></span></div>
+            <div class="meter"><span class="meter-label">Startup cost <b>9</b></span><span class="track"><span class="fill" style="width:90%"></span></span></div>
+            <div class="meter"><span class="meter-label">Monetization <b>6</b></span><span class="track"><span class="fill" style="width:60%"></span></span></div>
+          </div>
+
+          <div class="next">
+            <span class="k">Next</span>
+            <p>Ask ten colleagues who've considered leaving what they actually did to research it, and what they'd have paid for. Then check your employment contract before publishing anything under your own name.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="card">
+        <div class="rank"><span class="num">3</span><span class="num-label">Rank</span></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-title">
+              <p class="eyebrow">Local service business</p>
+              <h3>Practice digitalisation partner, Ostschweiz</h3>
+            </div>
+            <div class="overall"><span class="val">6.8</span><span class="eyebrow">Overall</span></div>
+          </div>
+
+          <div class="pill-row">
+            <span class="pill pill-some">Demand: Some</span>
+            <span class="tag">Nothing to build</span>
+            <span class="tag">In-person selling</span>
+          </div>
+
+          <p class="thesis">
+            Swiss practices are described by their own industry press as digitally underdeveloped by
+            European standards — isolated systems, data retyped by hand, software chosen on price or
+            a colleague's tip. You'd sell the rollout, not a product: get online booking live, kill
+            one manual re-typing step, charge a fixed fee. Ties with #2 on score; ranked below it
+            because the sources describing this gap are vendors who benefit from it looking large.
+          </p>
+
+          <div class="meters">
+            <div class="meter"><span class="meter-label">Opportunity <b>7</b></span><span class="track"><span class="fill" style="width:70%"></span></span></div>
+            <div class="meter"><span class="meter-label">Difficulty <b>5</b></span><span class="track"><span class="fill" style="width:50%"></span></span></div>
+            <div class="meter"><span class="meter-label">Competition <b>7</b></span><span class="track"><span class="fill" style="width:70%"></span></span></div>
+            <div class="meter"><span class="meter-label">Startup cost <b>8</b></span><span class="track"><span class="fill" style="width:80%"></span></span></div>
+            <div class="meter"><span class="meter-label">Monetization <b>7</b></span><span class="track"><span class="fill" style="width:70%"></span></span></div>
+          </div>
+
+          <div class="next">
+            <span class="k">Next</span>
+            <p>Call five independent practices within 30 minutes of Rheineck and ask one question: which part of your admin is still on paper or retyped by hand? Don't sell anything on that call.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="card">
+        <div class="rank"><span class="num">4</span><span class="num-label">Rank</span></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-title">
+              <p class="eyebrow">Slow burn · high rate</p>
+              <h3>Freelance medical writing &amp; MDR documentation</h3>
+            </div>
+            <div class="overall"><span class="val">5.8</span><span class="eyebrow">Overall</span></div>
+          </div>
+
+          <div class="pill-row">
+            <span class="pill pill-some">Demand: Some–Strong, but only for qualified writers</span>
+            <span class="tag">Real cash to enter</span>
+          </div>
+
+          <p class="thesis">
+            Advertised freelance rates in the German-speaking market run about €88/hour for medical
+            writing and €110/hour for MDR work, and it's remote and schedulable around shifts. But
+            every one of those data points describes the market for people who are
+            <em>already qualified</em>. Entry is gated by real MDR and ISO training — months of study
+            and the only meaningful cash outlay in this scan. Treat those rates as a ceiling, not a start.
+          </p>
+
+          <div class="meters">
+            <div class="meter"><span class="meter-label">Opportunity <b>6</b></span><span class="track"><span class="fill" style="width:60%"></span></span></div>
+            <div class="meter"><span class="meter-label">Difficulty <b>3</b></span><span class="track"><span class="fill is-low" style="width:30%"></span></span></div>
+            <div class="meter"><span class="meter-label">Competition <b>5</b></span><span class="track"><span class="fill" style="width:50%"></span></span></div>
+            <div class="meter"><span class="meter-label">Startup cost <b>7</b></span><span class="track"><span class="fill" style="width:70%"></span></span></div>
+            <div class="meter"><span class="meter-label">Monetization <b>8</b></span><span class="track"><span class="fill" style="width:80%"></span></span></div>
+          </div>
+
+          <div class="next">
+            <span class="k">Next</span>
+            <p>Before paying for any training: message five working medical writers and ask how they landed their first contract. If the answer is “through a job in the industry,” this becomes step two after #1 — not a competing option.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="card">
+        <div class="rank"><span class="num">5</span><span class="num-label">Rank</span></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-title">
+              <p class="eyebrow">Pivot of an existing asset</p>
+              <h3>Archie's Store, repointed at healthcare-worker gear</h3>
+            </div>
+            <div class="overall"><span class="val">5.4</span><span class="eyebrow">Overall</span></div>
+          </div>
+
+          <div class="pill-row">
+            <span class="pill pill-weak">Demand: Weak</span>
+            <span class="tag">Infrastructure already paid for</span>
+          </div>
+
+          <p class="thesis">
+            The shop and its automation already exist, so the question isn't whether to start
+            dropshipping — it's whether that machinery earns more pointed at a niche you're inside of.
+            Every source agrees the survivors in 2026 commit to one audience. What no source could
+            tell me is whether <em>this</em> audience buys gear online at a margin worth having, and
+            15–20% before ad spend is thin. This is the weakest-validated item here and it's ranked
+            accordingly.
+          </p>
+
+          <div class="meters">
+            <div class="meter"><span class="meter-label">Opportunity <b>5</b></span><span class="track"><span class="fill" style="width:50%"></span></span></div>
+            <div class="meter"><span class="meter-label">Difficulty <b>6</b></span><span class="track"><span class="fill" style="width:60%"></span></span></div>
+            <div class="meter"><span class="meter-label">Competition <b>3</b></span><span class="track"><span class="fill is-low" style="width:30%"></span></span></div>
+            <div class="meter"><span class="meter-label">Startup cost <b>8</b></span><span class="track"><span class="fill" style="width:80%"></span></span></div>
+            <div class="meter"><span class="meter-label">Monetization <b>5</b></span><span class="track"><span class="fill" style="width:50%"></span></span></div>
+          </div>
+
+          <div class="next">
+            <span class="k">Next</span>
+            <p>Spend one hour searching the German-language terms and counting the shops that come back. That alone may kill it — which would be a good outcome, cheaply bought.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Looked at and rejected</h2>
+      <p class="section-note">Logged so they don't come back as “new” next scan.</p>
+    </div>
+
+    <div class="rejects">
+      <div class="reject">
+        <h4>Sterile-processing / AEMP instrument software</h4>
+        <p><span class="why">Incumbents already installed.</span> The obvious insider play, but NEXUS is running at Spitäler Schaffhausen and the Universitätsspital Zürich has already rebuilt its AEMP. Domain knowledge is real; the distribution gap isn't bridgeable solo.</p>
+      </div>
+      <div class="reject">
+        <h4>Building an AI scribe or ambient documentation tool</h4>
+        <p><span class="why">Crowded, and newly high-regulation.</span> Entry pricing has already settled at €49–199/month, which means the price war happened without you. And the EU AI Act phases in from this month, classifying medical AI as high-risk. Note: <em>implementing</em> these tools for practices survives as #3 — building one doesn't.</p>
+      </div>
+      <div class="reject">
+        <h4>Productising the paper-trading bot</h4>
+        <p><span class="why">Regulatory risk, not technical merit.</span> The moment it advises others for money it heads toward FINMA-regulated territory, and the public warning list is a severe downside. I could not source where education ends and regulated advice begins — that needs a lawyer, not a scan. Keep the bot: it's a credible portfolio piece for #1's interviews.</p>
+      </div>
+      <div class="reject">
+        <h4>Nursing staff leasing / temp arbitrage</h4>
+        <p><span class="why">Licensed activity.</span> Personalverleih requires a licence and real capital. Parked without research — don't treat that one-line reasoning as verified.</p>
+      </div>
+      <div class="reject">
+        <h4>Generic fitness / shift-worker wellness content</h4>
+        <p><span class="why">No unfair advantage.</span> Fits your routine, but saturated and undifferentiated. Screened out before research.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="limits">
+    <h2>What this scan can't tell you</h2>
+    <ul>
+      <li>
+        <strong>No proof anyone will pay you personally.</strong> The macro evidence for #2 is strong —
+        surveys, labour statistics, industry reporting. What I could <em>not</em> retrieve was direct
+        community evidence: real people in forums asking for and paying for this help. That's why demand
+        is rated “Some” and not “Strong,” and it's the first thing to go and find out.
+      </li>
+      <li>
+        <strong>The salary figures are German, not Swiss.</strong> The €46–56k and €55–80k bands for #1
+        come from German sources in euros. Swiss pay is materially higher. Read them as proof the role
+        exists and pays professionally — not as an estimate of what you'd earn.
+      </li>
+      <li>
+        <strong>Some sources have skin in the game.</strong> The reporting on Swiss practices being
+        digitally behind (#3) comes largely from vendors selling into that gap.
+      </li>
+      <li>
+        <strong>Nothing here is income.</strong> Finding an opportunity isn't making money, and every
+        one of these can fail. Each write-up in the repo has explicit kill criteria for exactly that reason.
+      </li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Four answers that would change these rankings</h2>
+      <p class="section-note">Unanswered from your interests file. I ran with the defaults below.</p>
+    </div>
+    <div class="qs">
+      <div class="q"><span class="qn">1</span><p>How many hours a week do you actually have? <em>Assumed 5–10 around shifts.</em></p></div>
+      <div class="q"><span class="qn">2</span><p>What's the starting budget? <em>Assumed near zero — which is why #4 got penalised for its training costs and everything else is low-cash entry.</em></p></div>
+      <div class="q"><span class="qn">3</span><p>DACH only, or international too? <em>Assumed German-language DACH.</em></p></div>
+      <div class="q"><span class="qn">4</span><p>Extend Archie's / coaching / the trading bot, or go somewhere new? <em>Assumed no preference — so the scan included one extension and four new directions.</em></p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      Full write-ups with every source, competitor and kill criterion are in <code>opportunities/</code>.
+      Findings are logged in <code>memory/discoveries.md</code> so nothing here resurfaces as new.
+    </p>
+    <p>Money OS · Scout → Researcher → Validator → Strategist → Builder · 16 August 2026</p>
+  </footer>
+
+</div>
