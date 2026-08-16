@@ -187,6 +187,42 @@
     max-width: 42ch;
   }
 
+  /* ---------- delta strip ---------- */
+
+  .deltas { display: flex; flex-direction: column; gap: 0; }
+
+  .delta {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: .35rem 1rem;
+    padding: .95rem 0;
+    border-bottom: 1px solid var(--line-soft);
+    align-items: baseline;
+  }
+
+  .delta:first-child { border-top: 1px solid var(--line-soft); }
+
+  .delta .badge {
+    font-family: var(--mono);
+    font-size: .64rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: .25rem .5rem;
+    border-radius: 2px;
+    text-align: center;
+    background: var(--accent-soft);
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .delta p { margin: 0; color: var(--ink-2); font-size: .95rem; max-width: 72ch; }
+  .delta p b { color: var(--ink); font-weight: 600; }
+
+  @media (max-width: 34rem) {
+    .delta { grid-template-columns: 1fr; }
+    .delta .badge { justify-self: start; }
+  }
+
   /* ---------- opportunity cards ---------- */
 
   .cards { display: flex; flex-direction: column; gap: 1.1rem; }
@@ -199,6 +235,8 @@
     display: grid;
     grid-template-columns: 4.5rem 1fr;
   }
+
+  .card.is-new { border-color: var(--accent); }
 
   .rank {
     border-right: 1px solid var(--line-soft);
@@ -313,6 +351,13 @@
     border-radius: 2px;
     padding: .28rem .6rem;
     white-space: nowrap;
+  }
+
+  .tag-new {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    font-weight: 600;
   }
 
   /* meters */
@@ -430,6 +475,8 @@
 
   .q:last-child { border-bottom: none; }
 
+  .q.is-priority { background: var(--accent-soft); padding: .8rem .9rem; border-radius: 3px; border-bottom: none; }
+
   .q .qn {
     font-family: var(--mono);
     font-size: .7rem;
@@ -440,6 +487,7 @@
 
   .q p { margin: 0; color: var(--ink-2); font-size: .93rem; }
   .q p em { color: var(--ink-3); font-style: normal; }
+  .q.is-priority p { color: var(--ink); }
 
   footer {
     border-top: 1px solid var(--line);
@@ -451,7 +499,7 @@
   footer p { margin: 0 0 .5rem; max-width: 74ch; }
 
   a { color: var(--accent); text-underline-offset: 2px; }
-  a:focus-visible, .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   @media (max-width: 34rem) {
     .card { grid-template-columns: 1fr; }
@@ -472,35 +520,62 @@
 <div class="wrap">
 
   <header class="masthead">
-    <p class="eyebrow">Money OS · Morning Scan</p>
-    <h1>The best-evidenced move this month isn't a business.</h1>
+    <p class="eyebrow">Money OS · Morning Scan · Second run</p>
+    <h1>The one advantage nobody can buy expires when you leave the hospital.</h1>
     <p class="standfirst">
-      Five opportunities scouted, researched and stress-tested against real sources.
-      The one with the strongest demand evidence is a job in medical devices — and the
-      scoring rules say evidence wins, so that's where it ranked.
+      The re-run turned up something the first pass missed. The Swiss credential that
+      qualifies someone to advise practices on sterile processing can only be earned
+      while employed inside a hospital sterile-processing unit — which is exactly where
+      you are, and only for as long as you stay.
     </p>
     <div class="runline">
       <span>16 August 2026</span>
-      <span>First run</span>
-      <span>5 ranked · 5 rejected</span>
+      <span>Run 2 · same day</span>
+      <span>6 ranked · 6 rejected</span>
       <span>Market: DACH / Switzerland</span>
     </div>
   </header>
 
   <section class="verdict">
-    <p class="eyebrow">If you do one thing this week</p>
-    <h2>Have the same ten conversations once, and let them settle three of these five.</h2>
+    <p class="eyebrow">Read this first</p>
+    <h2>A same-day re-run can't find new trends, so it went after the gaps instead.</h2>
     <p>
-      Opportunities <strong>#2</strong> and <strong>#5</strong> both hinge on one unknown:
-      will people in your own profession pay you for something. Ten honest conversations with
-      colleagues who have thought about leaving answers that for both at once — and the same
-      conversations tell you where they buy their work gear. Meanwhile <strong>#1</strong> costs
-      nothing to start: the device vendors already in your OR are a warm target list nobody else has.
+      Nothing in the world changed between the two scans this morning — pretending
+      otherwise would be inventing data. So run 2 did the two things that were actually
+      still available: it attacked the evidence gap that capped opportunity&nbsp;#2, and
+      it scouted candidate spaces the first pass never touched. Both paid off.
     </p>
     <p>
-      Everything below separates <strong>what a source actually said</strong> from
-      <strong>what I inferred</strong>. Where demand couldn't be proven, it says so.
+      One new opportunity, one new rejection, a demand upgrade, and a better way into the
+      practices market. <strong>The top of the ranking is unchanged</strong> — the medtech
+      role still wins on evidence.
     </p>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>What changed since run 1</h2>
+      <p class="section-note">Four real deltas. Everything else stands.</p>
+    </div>
+
+    <div class="deltas">
+      <div class="delta">
+        <span class="badge">New · #4</span>
+        <p><b>MepV reprocessing compliance for practices.</b> Legally mandatory, inspected by the cantonal pharmacist against a published checklist, and the qualifying credential is gated behind hospital employment. Scores 6.2 — mid-table, best moat found across both runs.</p>
+      </div>
+      <div class="delta">
+        <span class="badge">Upgrade · #2</span>
+        <p><b>Demand evidence rose from “Some” to “Some-to-Strong.”</b> Real people asking the real question turned up — an active <em>“Raus aus der Pflege”</em> forum thread and named individual posts. The wording of those questions also reframed the product.</p>
+      </div>
+      <div class="delta">
+        <span class="badge">Rethink · #3</span>
+        <p><b>Right customer, wrong door.</b> Approach practices with reprocessing compliance — where you have genuine standing and they face an inspection deadline — and sell digitalisation second. Score deliberately unchanged: the strategy improved, the economics didn't.</p>
+      </div>
+      <div class="delta">
+        <span class="badge">Rejected</span>
+        <p><b>Corporate first-aid / BLS-AED training.</b> An obvious fit for a clinical background, killed in one search: eight SRC-certified Swiss providers already serve companies nationwide.</p>
+      </div>
+    </div>
   </section>
 
   <section class="section">
@@ -530,10 +605,11 @@
           </div>
 
           <p class="thesis">
-            Device vendors sell into operating rooms and need people who have stood at the table.
-            This is the only candidate where demand is <em>posted publicly</em> rather than inferred:
-            named companies, open roles, published salary bands, explicit lateral-entry pathways.
-            The catch is honest — it pays a salary, it doesn't build an asset you own.
+            Device vendors sell into operating rooms and need people who have stood at the
+            table. Still the only candidate where demand is <em>posted publicly</em> rather
+            than inferred: named companies, open roles, published salary bands, explicit
+            lateral-entry pathways. The catch is honest — it pays a salary, it doesn't build
+            an asset you own.
           </p>
 
           <div class="meters">
@@ -558,37 +634,37 @@
           <div class="card-top">
             <div class="card-title">
               <p class="eyebrow">Highest-ranked business you'd own</p>
-              <h3>The “Pflexit” transition program for healthcare workers</h3>
+              <h3>The “move without retraining” program for healthcare workers</h3>
             </div>
             <div class="overall"><span class="val">6.8</span><span class="eyebrow">Overall</span></div>
           </div>
 
           <div class="pill-row">
-            <span class="pill pill-some">Demand: Some</span>
-            <span class="tag">Refocuses your coaching concept</span>
+            <span class="pill pill-some">Demand: Some-to-Strong</span>
+            <span class="tag tag-new">Reframed</span>
             <span class="tag">Audience-gated</span>
           </div>
 
           <p class="thesis">
-            Roughly 300 nurses a month leave the profession in Switzerland — the phenomenon has its
-            own name, <em>Pflexit</em>. The survey evidence points somewhere useful: the top exit
-            driver is missing career progression, not pay. So the product is “here are the real exit
-            routes and what they pay,” written by someone still in the OR — not resilience coaching.
-            Your existing concept aimed at burned-out professionals generally; this points it at the
-            group you have standing with.
+            Run 1 framed this as “here are the exit routes.” The real questions people post
+            are narrower and more useful: <em>what can I move to without doing another full
+            training, and can I stay in healthcare but off shifts?</em> That's a sharper
+            product and one you can answer with authority. The complication found in run 2 is
+            the competition — a medical staffing company publishes this content free, funded
+            by recruitment revenue, so they can outlast any paid guide indefinitely.
           </p>
 
           <div class="meters">
             <div class="meter"><span class="meter-label">Opportunity <b>8</b></span><span class="track"><span class="fill" style="width:80%"></span></span></div>
             <div class="meter"><span class="meter-label">Difficulty <b>6</b></span><span class="track"><span class="fill" style="width:60%"></span></span></div>
-            <div class="meter"><span class="meter-label">Competition <b>5</b></span><span class="track"><span class="fill" style="width:50%"></span></span></div>
+            <div class="meter"><span class="meter-label">Competition <b>4</b></span><span class="track"><span class="fill is-low" style="width:40%"></span></span></div>
             <div class="meter"><span class="meter-label">Startup cost <b>9</b></span><span class="track"><span class="fill" style="width:90%"></span></span></div>
-            <div class="meter"><span class="meter-label">Monetization <b>6</b></span><span class="track"><span class="fill" style="width:60%"></span></span></div>
+            <div class="meter"><span class="meter-label">Monetization <b>7</b></span><span class="track"><span class="fill" style="width:70%"></span></span></div>
           </div>
 
           <div class="next">
             <span class="k">Next</span>
-            <p>Ask ten colleagues who've considered leaving what they actually did to research it, and what they'd have paid for. Then check your employment contract before publishing anything under your own name.</p>
+            <p>Ask ten colleagues who've considered leaving what they actually did to research it, and what they'd have paid for. People asking free questions online proves the problem — not the willingness to pay.</p>
           </div>
         </div>
       </article>
@@ -607,16 +683,16 @@
 
           <div class="pill-row">
             <span class="pill pill-some">Demand: Some</span>
-            <span class="tag">Nothing to build</span>
+            <span class="tag tag-new">New way in</span>
             <span class="tag">In-person selling</span>
           </div>
 
           <p class="thesis">
-            Swiss practices are described by their own industry press as digitally underdeveloped by
-            European standards — isolated systems, data retyped by hand, software chosen on price or
-            a colleague's tip. You'd sell the rollout, not a product: get online booking live, kill
-            one manual re-typing step, charge a fixed fee. Ties with #2 on score; ranked below it
-            because the sources describing this gap are vendors who benefit from it looking large.
+            Swiss practices are described by their own industry press as digitally behind —
+            isolated systems, data retyped by hand. The customer is right, but run 2 found a
+            better door: lead with the reprocessing compliance below, where you have real
+            standing and they face an inspection, then sell digitalisation second to a client
+            who already trusts you. Same five discovery calls, better question.
           </p>
 
           <div class="meters">
@@ -629,14 +705,58 @@
 
           <div class="next">
             <span class="k">Next</span>
-            <p>Call five independent practices within 30 minutes of Rheineck and ask one question: which part of your admin is still on paper or retyped by hand? Don't sell anything on that call.</p>
+            <p>Call five independent practices within 30 minutes of Rheineck. Ask two things: when was your last inspection, and what admin is still retyped by hand. Don't sell anything on that call.</p>
           </div>
         </div>
       </article>
 
       <!-- 4 -->
-      <article class="card">
+      <article class="card is-new">
         <div class="rank"><span class="num">4</span><span class="num-label">Rank</span></div>
+        <div class="card-body">
+          <div class="card-top">
+            <div class="card-title">
+              <p class="eyebrow">Found in run 2</p>
+              <h3>MepV reprocessing &amp; hygiene compliance for Swiss practices</h3>
+            </div>
+            <div class="overall"><span class="val">6.2</span><span class="eyebrow">Overall</span></div>
+          </div>
+
+          <div class="pill-row">
+            <span class="pill pill-some">Demand: Some</span>
+            <span class="tag tag-new">New</span>
+            <span class="tag">Best moat found</span>
+          </div>
+
+          <p class="thesis">
+            Reprocessing reusable instruments is legally mandatory under MepV and must follow
+            validated procedures. Practices — unlike hospitals — are inspected by the
+            <em>cantonal pharmacist</em>, against a published FMH checklist. Here's the part
+            that matters: the Swiss Fachkunde credential runs 16 days over eight months and
+            <strong>requires employment in a hospital sterile-processing unit to enrol at
+            all.</strong> The people who need this knowledge are structurally the last ones
+            who can obtain it. That's a moat a competitor cannot buy — and it lasts only as
+            long as your current job does.
+          </p>
+
+          <div class="meters">
+            <div class="meter"><span class="meter-label">Opportunity <b>7</b></span><span class="track"><span class="fill" style="width:70%"></span></span></div>
+            <div class="meter"><span class="meter-label">Difficulty <b>5</b></span><span class="track"><span class="fill" style="width:50%"></span></span></div>
+            <div class="meter"><span class="meter-label">Competition <b>6</b></span><span class="track"><span class="fill" style="width:60%"></span></span></div>
+            <div class="meter"><span class="meter-label">Startup cost <b>6</b></span><span class="track"><span class="fill" style="width:60%"></span></span></div>
+            <div class="meter"><span class="meter-label">Monetization <b>7</b></span><span class="track"><span class="fill" style="width:70%"></span></span></div>
+          </div>
+
+          <div class="next">
+            <span class="k">Next</span>
+            <p>Answer one question first: do you already hold Fachkunde I or II? If yes, this is live now and the score understates it. If no, it's an eight-month project that must be started while you're still employed at the hospital.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="card">
+        <div class="rank"><span class="num">5</span><span class="num-label">Rank</span></div>
         <div class="card-body">
           <div class="card-top">
             <div class="card-title">
@@ -652,11 +772,11 @@
           </div>
 
           <p class="thesis">
-            Advertised freelance rates in the German-speaking market run about €88/hour for medical
-            writing and €110/hour for MDR work, and it's remote and schedulable around shifts. But
-            every one of those data points describes the market for people who are
-            <em>already qualified</em>. Entry is gated by real MDR and ISO training — months of study
-            and the only meaningful cash outlay in this scan. Treat those rates as a ceiling, not a start.
+            Advertised freelance rates in the German-speaking market run about €88/hour for
+            medical writing and €110/hour for MDR work, and it's remote and schedulable around
+            shifts. But every one of those data points describes the market for people who are
+            <em>already qualified</em>. Entry is gated by real MDR and ISO training. Treat
+            those rates as a ceiling, not a start.
           </p>
 
           <div class="meters">
@@ -674,9 +794,9 @@
         </div>
       </article>
 
-      <!-- 5 -->
+      <!-- 6 -->
       <article class="card">
-        <div class="rank"><span class="num">5</span><span class="num-label">Rank</span></div>
+        <div class="rank"><span class="num">6</span><span class="num-label">Rank</span></div>
         <div class="card-body">
           <div class="card-top">
             <div class="card-title">
@@ -693,11 +813,11 @@
 
           <p class="thesis">
             The shop and its automation already exist, so the question isn't whether to start
-            dropshipping — it's whether that machinery earns more pointed at a niche you're inside of.
-            Every source agrees the survivors in 2026 commit to one audience. What no source could
-            tell me is whether <em>this</em> audience buys gear online at a margin worth having, and
-            15–20% before ad spend is thin. This is the weakest-validated item here and it's ranked
-            accordingly.
+            dropshipping — it's whether that machinery earns more pointed at a niche you're
+            inside of. Every source agrees the survivors in 2026 commit to one audience. What
+            no source could tell me is whether <em>this</em> audience buys gear online at a
+            margin worth having, and 15–20% before ad spend is thin. Still the
+            weakest-validated item here.
           </p>
 
           <div class="meters">
@@ -726,16 +846,20 @@
 
     <div class="rejects">
       <div class="reject">
+        <h4>Corporate first-aid / BLS-AED training <span class="tag tag-new">Run 2</span></h4>
+        <p><span class="why">Saturated and credential-gated.</span> An obvious fit for a clinical background — and killed in a single search. Eight SRC-certified Swiss providers already serve companies on-site nationwide, with no visible underserved segment.</p>
+      </div>
+      <div class="reject">
         <h4>Sterile-processing / AEMP instrument software</h4>
-        <p><span class="why">Incumbents already installed.</span> The obvious insider play, but NEXUS is running at Spitäler Schaffhausen and the Universitätsspital Zürich has already rebuilt its AEMP. Domain knowledge is real; the distribution gap isn't bridgeable solo.</p>
+        <p><span class="why">Incumbents already installed.</span> NEXUS is running at Spitäler Schaffhausen and the Universitätsspital Zürich has already rebuilt its AEMP. Domain knowledge is real; the distribution gap isn't bridgeable solo.</p>
       </div>
       <div class="reject">
         <h4>Building an AI scribe or ambient documentation tool</h4>
-        <p><span class="why">Crowded, and newly high-regulation.</span> Entry pricing has already settled at €49–199/month, which means the price war happened without you. And the EU AI Act phases in from this month, classifying medical AI as high-risk. Note: <em>implementing</em> these tools for practices survives as #3 — building one doesn't.</p>
+        <p><span class="why">Crowded, and newly high-regulation.</span> Entry pricing already settled at €49–199/month, which means the price war happened without you. And the EU AI Act phases in from this month, classifying medical AI as high-risk. Note: <em>implementing</em> these for practices survives as #3 — building one doesn't.</p>
       </div>
       <div class="reject">
         <h4>Productising the paper-trading bot</h4>
-        <p><span class="why">Regulatory risk, not technical merit.</span> The moment it advises others for money it heads toward FINMA-regulated territory, and the public warning list is a severe downside. I could not source where education ends and regulated advice begins — that needs a lawyer, not a scan. Keep the bot: it's a credible portfolio piece for #1's interviews.</p>
+        <p><span class="why">Regulatory risk, not technical merit.</span> The moment it advises others for money it heads toward FINMA-regulated territory. I could not source where education ends and regulated advice begins — that needs a lawyer, not a scan. Keep the bot: it's a credible portfolio piece for #1's interviews.</p>
       </div>
       <div class="reject">
         <h4>Nursing staff leasing / temp arbitrage</h4>
@@ -752,46 +876,57 @@
     <h2>What this scan can't tell you</h2>
     <ul>
       <li>
-        <strong>No proof anyone will pay you personally.</strong> The macro evidence for #2 is strong —
-        surveys, labour statistics, industry reporting. What I could <em>not</em> retrieve was direct
-        community evidence: real people in forums asking for and paying for this help. That's why demand
-        is rated “Some” and not “Strong,” and it's the first thing to go and find out.
+        <strong>Reddit is blocked to my crawler at the network level.</strong> The largest pool
+        of candid career-change discussion simply cannot be searched with these tools — and
+        no future scan will fix it. The forum evidence behind #2 is a partial substitute found
+        elsewhere. Getting the real answer needs you browsing manually.
       </li>
       <li>
-        <strong>The salary figures are German, not Swiss.</strong> The €46–56k and €55–80k bands for #1
-        come from German sources in euros. Swiss pay is materially higher. Read them as proof the role
+        <strong>Free questions aren't proof of payment.</strong> Run 2 found people publicly
+        asking #2's exact question. That proves the problem exists, not that anyone will pay
+        for the answer — especially when a staffing company gives that answer away free.
+      </li>
+      <li>
+        <strong>One tempting statistic was deliberately thrown out.</strong> A Bern cantonal
+        report shows ~38.5% of water samples flagged for contamination — but it's from
+        2012–13 and it's about water sampling, not practice reprocessing failures. It would
+        have made #4 look better and it isn't valid evidence, so it's recorded in the repo as
+        a trap rather than used.
+      </li>
+      <li>
+        <strong>The salary figures are German, not Swiss.</strong> The bands for #1 come from
+        German sources in euros. Swiss pay is materially higher. Read them as proof the role
         exists and pays professionally — not as an estimate of what you'd earn.
       </li>
       <li>
-        <strong>Some sources have skin in the game.</strong> The reporting on Swiss practices being
-        digitally behind (#3) comes largely from vendors selling into that gap.
-      </li>
-      <li>
-        <strong>Nothing here is income.</strong> Finding an opportunity isn't making money, and every
-        one of these can fail. Each write-up in the repo has explicit kill criteria for exactly that reason.
+        <strong>Nothing here is income.</strong> Finding an opportunity isn't making money, and
+        every one of these can fail. Each write-up in the repo has explicit kill criteria for
+        exactly that reason.
       </li>
     </ul>
   </section>
 
   <section class="section">
     <div class="section-head">
-      <h2>Four answers that would change these rankings</h2>
-      <p class="section-note">Unanswered from your interests file. I ran with the defaults below.</p>
+      <h2>Questions that would change these rankings</h2>
+      <p class="section-note">Still unanswered. I ran with the defaults below.</p>
     </div>
     <div class="qs">
+      <div class="q is-priority"><span class="qn">★</span><p><strong>Do you already hold Fachkunde I or II for sterile processing?</strong> New in run 2, and now the single highest-value answer — it decides whether #4 is live today or an eight-month project you must start before you leave the hospital.</p></div>
       <div class="q"><span class="qn">1</span><p>How many hours a week do you actually have? <em>Assumed 5–10 around shifts.</em></p></div>
-      <div class="q"><span class="qn">2</span><p>What's the starting budget? <em>Assumed near zero — which is why #4 got penalised for its training costs and everything else is low-cash entry.</em></p></div>
+      <div class="q"><span class="qn">2</span><p>What's the starting budget? <em>Assumed near zero — which is why #5 got penalised for its training costs and everything else is low-cash entry.</em></p></div>
       <div class="q"><span class="qn">3</span><p>DACH only, or international too? <em>Assumed German-language DACH.</em></p></div>
-      <div class="q"><span class="qn">4</span><p>Extend Archie's / coaching / the trading bot, or go somewhere new? <em>Assumed no preference — so the scan included one extension and four new directions.</em></p></div>
+      <div class="q"><span class="qn">4</span><p>Extend Archie's / coaching / the trading bot, or go somewhere new? <em>Assumed no preference — so the scan included one extension and five new directions.</em></p></div>
     </div>
   </section>
 
   <footer>
     <p>
       Full write-ups with every source, competitor and kill criterion are in <code>opportunities/</code>.
-      Findings are logged in <code>memory/discoveries.md</code> so nothing here resurfaces as new.
+      Run-2 changes are marked as re-scan addenda inside the affected files, and logged in
+      <code>memory/discoveries.md</code> so nothing here resurfaces as new.
     </p>
-    <p>Money OS · Scout → Researcher → Validator → Strategist → Builder · 16 August 2026</p>
+    <p>Money OS · Scout → Researcher → Validator → Strategist → Builder · Run 2 · 16 August 2026</p>
   </footer>
 
 </div>

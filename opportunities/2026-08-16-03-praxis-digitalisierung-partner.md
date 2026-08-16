@@ -52,6 +52,45 @@ Note also that the sources documenting this problem are themselves vendors and
 service providers in the space, so they have an interest in describing the gap as
 large. Discount accordingly.
 
+---
+
+# RE-SCAN ADDENDUM — 2026-08-16, second run
+
+**The customer here is right. The way in was wrong.**
+
+The second scan found that the same practices carry a *legally mandatory, inspected*
+obligation around medical-device reprocessing — and that this is a subject where an OR
+professional has genuine expertise, rather than the generic IT-implementer expertise
+this opportunity originally assumed.
+
+See `opportunities/2026-08-16-06-mepv-reprocessing-compliance.md` for the full sourced
+case. In short: reprocessing must follow validated procedures under MepV, practices are
+inspected by the **cantonal pharmacist** against a published FMH/KIGAP checklist, and
+consulting an external hygiene expert is already a recommended route for new practices.
+— [Swissmedic](https://www.swissmedic.ch/swissmedic/en/home/medical-devices/reprocessing---maintenance/reprocessing.html), [FMH checklist](https://www.guidelines.fmh.ch/index_detail.cfm?id=15EF7A1D403B46A9FE7E3B77D60AC05E), [Swiss Cleanroom Community](https://www.swisscleanroomcommunity.ch/de/scc-community/community/blog?news=558)
+
+## What to change
+
+Keep this opportunity, keep the target list, but **lead with compliance, not
+digitalisation.** Concretely:
+
+- Compliance is a sharper opening than efficiency. "Are you ready for your next
+  inspection?" gets a meeting; "is your admin inefficient?" gets a polite no.
+- Reprocessing is where you have standing. Practice IT is where you have none — and
+  the sources describing the digitalisation gap are themselves vendors selling into it.
+- Digitalisation then becomes the **second** sale to an existing client who already
+  trusts you, which is a far easier sale than the first one.
+
+The five discovery calls in the checklist below are still exactly right — just change
+the question. Instead of asking only what is still retyped by hand, ask about the last
+inspection too. One call, both answers.
+
+**Score unchanged at 6.8.** The re-scan changed the entry strategy, not the economics,
+and it would be dishonest to inflate the score for a plan that has still never been
+tested on a real practice.
+
+---
+
 ## STRATEGIST — plan
 
 - **Offer:** A fixed-price "digitalisation starter" for a single practice — online

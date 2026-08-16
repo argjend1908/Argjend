@@ -79,6 +79,53 @@ See `opportunities/2026-08-16-00-rejected.md` for full reasoning and sources.
 
 ---
 
+## 2026-08-16 (2nd scan) — MepV reprocessing & hygiene compliance for Swiss practices
+Source: https://www.swissmedic.ch/swissmedic/en/home/medical-devices/reprocessing---maintenance/reprocessing.html · https://www.guidelines.fmh.ch/index_detail.cfm?id=15EF7A1D403B46A9FE7E3B77D60AC05E
+Status: New — scored 6.2, **best moat found across both scans**
+Notes: File `opportunities/2026-08-16-06-mepv-reprocessing-compliance.md`. Reprocessing
+is legally mandatory under MepV with validated procedures; practices (unlike hospitals)
+are inspected by the **Kantonsapotheker** against a published FMH/KIGAP checklist; using
+an external hygiene expert is already a recommended route for new practices. Critical
+structural fact: the Swiss Fachkunde I credential (SGSV/H+ Bildung, 16 days over ~8
+months) **requires employment in a hospital ZSVA/AEMP to enrol** — so the qualification
+can only be acquired from inside a hospital, which is where the user already is. That
+moat is real but time-limited to current employment. Competitors exist
+(krankenhaushygiene.ch); the real competition is free official cantonal checklists.
+**Open question that decides everything: does the user already hold Fachkunde I/II?**
+
+---
+
+## Run 2 changes to existing entries
+
+- **#2 Pflexit — demand upgraded "Some" → "Some-to-Strong".** Real community evidence
+  finally found: an active "Raus aus der Pflege" thread on krankenschwester.de and named
+  individual questions on gutefrage.net ("Raus aus der Altenpflege, aber was jetzt? *ohne
+  neue Ausbildung*"). **Product reframed** by that evidence — the question people actually
+  ask is "what can I move to without another full training, and can I stay in healthcare
+  off shifts?", not "how do I leave nursing". Competition score dropped 5 → 4: doctari.de
+  publishes this content free, subsidised by staffing revenue. Overall stays 6.8.
+- **#3 Praxis digitalisation — entry strategy replaced, score unchanged at 6.8.** Same
+  customer, better wedge: lead with reprocessing compliance (real expertise, legal hook,
+  inspection deadline) and sell digitalisation second, to a client who already trusts you.
+
+## Tooling limits discovered (permanent — do not retry expecting different results)
+
+- **Reddit is blocked to this crawler at the network level.** The largest pool of candid
+  career-change discussion cannot be searched with these tools. Not fixable by a future
+  scan; needs manual browsing.
+- **krankenschwester.de is blocked by the egress proxy** — the forum thread is findable
+  via search but its contents cannot be fetched directly.
+- Swiss-specific salary and course-price data is consistently thin; German (EUR) sources
+  dominate and must not be read across to Swiss figures.
+
+## Evidence trap logged (do not reuse)
+
+A 2012–2013 Bern cantonal pharmacy report shows ~38.5% of water samples flagged for
+microbial contamination. It is a decade old and about **water sampling**, not practice
+reprocessing failure rates. It is NOT support for opportunity #6.
+
+---
+
 ## Open questions still unanswered (carried from `memory/interests.md`)
 
 These were NOT answered before this scan and were filled with stated defaults. The

@@ -32,3 +32,13 @@ Open loops carried into the next scan:
 - 5 messages to working medical writers (validates #4 before any training spend)
 - Device-brand target list from the OR (starts #2)
 - The 4 unanswered questions in `interests.md` — still unanswered, defaults assumed
+
+### 2026-08-16 — Second scan (same day, re-run on request)
+Ran: targeted re-run rather than a repeat loop. Same-day macro trends cannot change, so
+the run attacked run 1's open gaps and scouted untouched candidate spaces instead.
+Found: 1 new opportunity (#6, MepV reprocessing compliance — best moat found so far),
+1 new rejection (BLS-AED corporate training, saturated), demand upgrade + product reframe
+for #2, entry-strategy replacement for #3.
+Actioned: **still nothing.**
+New top question, ahead of the other four: **does the user already hold Fachkunde I/II
+for sterile processing?** It decides whether #6 is live now or an 8-month project.

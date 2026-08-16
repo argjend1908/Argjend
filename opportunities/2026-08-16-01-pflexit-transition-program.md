@@ -69,6 +69,78 @@ That distinction matters: macro pain is proven, **willingness to pay a private
 individual for transition guidance is not yet proven.** Rating capped at "Some"
 until that gap is closed. Closing it is step 1 of the build checklist.
 
+---
+
+# RE-SCAN ADDENDUM — 2026-08-16, second run
+
+The first run rated demand "Some" because it could only find macro data, not real
+people asking. That gap was the top open loop. It is now **partly closed**, and what
+turned up also changes the product.
+
+## New EVIDENCE (sourced) — real people, real questions
+
+- An active thread titled literally **"Raus aus der Pflege"** on the German nursing
+  community krankenschwester.de, where posters distinguish between wanting to leave
+  *nursing* and wanting to escape *the working conditions*, and trade information on
+  alternative paths. — [krankenschwester.de](https://www.krankenschwester.de/forum/themen/raus-aus-der-pflege.144230/)
+- Real individual questions on gutefrage.net, including one titled
+  **"Raus aus der Altenpflege, aber was jetzt? (ohne neue Ausbildung)"** and
+  **"Berufswechsel von Pflege ins Büro"**. — [gutefrage.net](https://www.gutefrage.net/frage/raus-aus-der-altenpflege-aber-was-jetzt-ohne-neue-ausbildung), [gutefrage.net](https://www.gutefrage.net/frage/berufswechsel-von-pflege-ins-buero)
+- The recurring answer in these discussions is that a **full exit is often not
+  necessary** — people move within healthcare (dialysis, anaesthesia, practice work,
+  administration, temp work) or change working conditions instead. Forum posters
+  specifically mention wanting to stay in healthcare but on regular daytime hours. — [doctari](https://www.doctari.de/magazin/karriere-pflegekraft/tipps/raus-aus-der-pflege/), [krankenschwester.de](https://www.krankenschwester.de/forum/themen/raus-aus-der-pflege.144230/)
+
+## This changes the product
+
+The original framing was "here are the exit routes." The evidence says the question
+people actually ask is narrower and more practical:
+
+> **"What can I move to without doing another full training — and can I stay in
+> healthcare but off shifts?"**
+
+That is a better product than "how to leave nursing," and it is a question this
+background can answer with authority. Sell the *move*, not the *exit*.
+
+## New competitor — and a difficult one
+
+[doctari.de](https://www.doctari.de/magazin/karriere-pflegekraft/tipps/raus-aus-der-pflege/) already publishes "Raus aus der Pflege: Alternative Berufe für
+Pflegekräfte" **free**. Doctari is a medical staffing company, so that content is
+subsidised by recruitment revenue — they can give away for free what you would want to
+charge for, indefinitely, because the content is a lead magnet, not the product.
+
+That is a structurally harder competitor than another coach. Competition score drops
+**5 → 4**.
+
+## Honest limitation that did not go away
+
+Reddit is **blocked to this crawler** at the network level, so the largest pool of
+candid career-change discussion cannot be searched with these tools at all. This is a
+permanent tooling limit, not something a future scan will fix. The forum evidence above
+is a partial substitute. Manual browsing is still required for the real answer.
+
+Also: people **asking questions for free** is evidence of a problem, not evidence of
+willingness to pay. That distinction still stands, and step 1 below is still step 1.
+
+## Revised demand rating: **Some → Some-to-Strong**
+
+Upgraded because the question is now demonstrably being asked by named individuals in
+public. Not upgraded to "Strong" because no evidence of payment was found, and the main
+competitor gives the answer away free.
+
+## Revised score after re-scan
+
+| Factor | Run 1 | Run 2 | Why changed |
+|---|---|---|---|
+| Opportunity | 8 | 8 | Unchanged |
+| Difficulty | 6 | 6 | Unchanged |
+| Competition | 5 | **4** | doctari gives it away free, funded by staffing revenue |
+| Startup cost | 9 | 9 | Unchanged |
+| Monetization | 6 | **7** | Sharper product: "move without retraining" is specific and sellable |
+| **Overall** | **6.8** | **6.8** | Net unchanged — better product, harder competition |
+
+---
+
 ## STRATEGIST — plan
 
 - **Offer:** A German-language, Switzerland-specific guide to leaving (or moving
